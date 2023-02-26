@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PassionProject.Models.RentalDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<div style="display:flex;justify-content:space-between; align-items:center;">
+    <h1>Rental List</h1>
+    <form action="/Rental/New" method="GET">
+        <input type="submit" value="Add Rental" class="btn btn-info" />
+    </form>
+</div>
+
+<hr >
+
+@foreach (var rental in Model)
+{
+    <h2><a class="rental-name" href="/Rental/Details/@rental.RentalID">@rental.RFName @rental.RLName </a></h2>
+    <!--<div>Purchase Date: @rental.PurchaseDate</div>
+    <div>Return Date: @rental.ReturnDate</div>
+    <div>MovieName: @rental.MovieName</div>-->
+}
+
+<style>
+    .rental-name:hover {
+        text-decoration: none;
+        text-shadow: #000 10px 10px 10px 10px;
+    }
+</style>

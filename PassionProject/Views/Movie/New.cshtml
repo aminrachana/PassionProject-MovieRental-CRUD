@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<a href="/Movie/List">Go back</a>
+
+<h2>New Movie</h2>
+<form action="/Movie/Create" method="POST">
+    <div>
+        <label>Name: </label><input type="text" name="MovieName" class="form-control"/>
+    </div>
+    <div>
+        <label>Genre: </label><input type="text" name="MovieGenre" class="form-control"/>
+    </div>
+    <div>
+        <label>Year: </label><input type="number" name="MovieYear" class="form-control"/>
+    </div>
+    <div>
+        <label>Cost: </label><input type="number" name="MovieCost" class="form-control"/>
+    </div>
+    <div>
+        <label>Description: </label><textarea type="text" name="MovieDescription" rows="3" class="form-control"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Create Movie" class="btn btn-primary" style="margin-top: 20px;"/>
+    </div>
+</form>

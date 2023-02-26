@@ -1,0 +1,78 @@
+﻿@model PassionProject.Models.ViewModel.DetailsMovie
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Movie/List">Go back</a>
+
+
+<div style="margin: 20px 0;">
+    <h2>@Model.SelectedMovie.MovieName</h2>
+    <table class="movie-detail">
+        <tr>
+            <td>Genre:</td>
+            <td>@Model.SelectedMovie.MovieGenre</td>
+        </tr>
+        <tr>
+            <td>Movie Year:</td>
+            <td>@Model.SelectedMovie.MovieYear</td>
+        </tr>
+        <tr>
+            <td>Movie Cost:</td>
+            <td>$ @Model.SelectedMovie.MovieCost.00</td>
+        </tr>
+        <tr>
+            <td>Movie Description:</td>
+            <td>@Model.SelectedMovie.MovieDescription</td>
+        </tr>
+
+    </table>
+
+    <form action="/Movie/Edit/@Model.SelectedMovie.MovieID" method="POST" style="float: left;">
+        <input type="submit" value="Edit" class="btn btn-warning" />
+    </form>
+    <form action="/Movie/DeleteConfirm/@Model.SelectedMovie.MovieID" method="POST">
+        <input type="submit" value="Delete" class="btn btn-danger" style="margin-left: 20px;" />
+    </form>
+</div>
+
+<div style="margin-top: 50px;">
+    <table class="rentals-for-movies">
+        <thead>
+            <tr>
+                <th>Rental ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Purchase Date</th>
+                <th>Return Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tboody>
+            @foreach (var rental in Model.RelatedRentals)
+            {
+                <tr>
+                    <td><a href="/Rental/Details/@rental.RentalID">@rental.RentalID</a></td>
+                    <td>@rental.RFName</td>
+                    <td>@rental.RLName</td>
+                    <td>@rental.PurchaseDate</td>
+                    <td>@rental.ReturnDate</td>
+                    <td><a href="/Rental/Edit/@rental.RentalID">Update</a></td>
+                    <td><a href="/Rental/DeleteConfirm/@rental.RentalID">Delete</a></td>
+                </tr>
+            }
+        </tboody>
+    </table>
+</div>
+
+<style>
+    .movie-detail td {
+        padding-right: 10px;
+        padding-bottom: 5px;
+    }
+
+    .rentals-for-movies th, .rentals-for-movies td {
+        padding: 10px 15px;
+    }
+</style>

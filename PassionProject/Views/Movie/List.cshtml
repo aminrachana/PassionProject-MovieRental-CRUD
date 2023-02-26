@@ -1,0 +1,29 @@
+﻿@model IEnumerable<PassionProject.Models.MovieDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<div style="display:flex;justify-content:space-between; align-items:center;">
+    <h1>Movie List</h1>
+    <form action="/Movie/New" method="GET">
+        <input type="submit" value="Add Movie" class="btn btn-info" />
+    </form>
+</div>
+
+<hr>
+
+@foreach (var movie in Model)
+{
+    <h2><a class="movie-name" href="/Movie/Details/@movie.MovieID">@movie.MovieName</a></h2>
+    <!-- <div>genre: @movie.MovieGenre</div>
+     <div>year: @movie.MovieYear</div>
+     <div>cost: $@movie.MovieCost</div>
+     <div>description: @movie.MovieDescription</div>-->
+}
+
+<style>
+    .movie-name:hover{
+        text-decoration: none;
+        text-shadow: #000 10px 10px 10px 10px;
+    }
+</style>

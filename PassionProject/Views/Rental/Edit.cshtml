@@ -1,0 +1,36 @@
+﻿@model PassionProject.Models.ViewModel.UpdateRental
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Rental</h2>
+<form action="/Rental/Update/@Model.SelectedRental.RentalID" method="POST">
+    <input type="hidden" name="RentalID" value="@Model.SelectedRental.RentalID" />
+    <div>
+        <label>First Name: </label><input type="text" name="RFName" value="@Model.SelectedRental.RFName" class="form-control"/>
+    </div>
+    <div>
+        <label>Last Name: </label><input type="text" name="RLName" value="@Model.SelectedRental.RLName" class="form-control"/>
+    </div>
+    <div>
+        <label>Purchase Date: </label>
+        @Html.TextBoxFor(model => model.SelectedRental.PurchaseDate, new { @type = "date", @class = "form-control datepicker", @Name="PurchaseDate", @Value = Model.SelectedRental.PurchaseDate.ToString("yyyy-MM-dd") })
+    </div>
+    <div>
+        <label>Return Date: </label>
+        @Html.TextBoxFor(model => model.SelectedRental.ReturnDate, new { @type = "date", @class = "form-control datepicker", @Name = "ReturnDate", @Value = Model.SelectedRental.ReturnDate.ToString("yyyy-MM-dd") })
+    </div>
+    <div>
+        <label>Movie Name: </label>
+        <select name="MovieID" class="form-control">
+            @foreach (var movie in Model.MoviesOptions)
+            {
+                <option value="@movie.MovieID" class="form-control">@movie.MovieName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Rental" class="btn btn-primary"/>
+    </div>
+</form>
+

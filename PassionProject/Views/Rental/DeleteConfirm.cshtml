@@ -1,0 +1,17 @@
+﻿@model PassionProject.Models.RentalDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Delete Rental</h2>
+
+<div style="font-size:30px; float:right;">
+    <a class="cancel" href="/Rental/List">Cancel</a>
+</div>
+
+<h3> Are You sure want to delete rental?</h3>
+<h1>@Model.RentalID. @Model.RFName @Model.RLName</h1>
+
+<form action="/Rental/Delete/@Model.RentalID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

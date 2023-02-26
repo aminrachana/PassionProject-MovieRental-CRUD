@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PassionProject.Models.MovieDto>
+@{
+    ViewBag.Title = "Create";
+}
+
+<a href="/Rental/List">Go Back</a>
+
+<h2>Create Rental</h2>
+<form action="/Rental/Create" method="POST">
+    <input type="hidden" name="RentalID" />
+
+    <div>
+        <label>First Name: </label><input type="text" name="RFName" class="form-control"/>
+    </div>
+    <div>
+        <label>Last Name: </label><input type="text" name="RLName" class="form-control"/>
+    </div>
+    <div>
+        <label>Purchase Date: </label><input type="date" name="PurchaseDate" class="form-control"/>
+    </div>
+    <div>
+        <label>Return Date: </label><input type="date" name="ReturnDate" class="form-control"/>
+    </div>
+    <div>
+        <label>Movie Name: </label>
+        <select name="MovieID" class="form-control">
+            @foreach (var movie in Model)
+            {
+                <option value="@movie.MovieID" >@movie.MovieName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create Rental" class="btn btn-primary" style="margin-top: 20px;" />
+    </div>
+</form>
+

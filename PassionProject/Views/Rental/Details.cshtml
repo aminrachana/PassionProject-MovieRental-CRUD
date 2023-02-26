@@ -1,0 +1,42 @@
+﻿@model PassionProject.Models.RentalDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<a href="/Rental/List">Go back</a>
+<div style="margin: 20px 0;">
+    <table class="rental-detail">
+        <tr>
+            <td><h2>Name:</h2></td>
+            <td><h2>@Model.RFName @Model.RLName</h2></td>
+        </tr>
+        <tr>
+            <td>Purchase Date:</td>
+            <td>@Model.PurchaseDate.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>Return Date:</td>
+            <td>@Model.ReturnDate.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>Movie Name:</td>
+            <td>@Model.MovieName</td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <form action="/Rental/Edit/@Model.RentalID" method="POST" style="float:left; margin-right: 20px;">
+        <input type="submit" value="Edit" class="btn btn-warning" />
+    </form>
+    <form action="/Rental/DeleteConfirm/@Model.RentalID" method="POST">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>
+
+<style>
+    .rental-detail td{
+        padding-right: 10px;
+        padding-bottom: 5px;
+    }
+</style>
