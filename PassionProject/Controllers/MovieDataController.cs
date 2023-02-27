@@ -17,6 +17,14 @@ namespace PassionProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns a list of movies in the movies database
+        /// </summary>
+        /// <returns>
+        /// A list of Movie Objects mapped to the database column values (movie name, movie genre, date of release, description, cost of renting).
+        /// </returns>
+        /// <example>GET api/MovieData/ListMovies -> {Movie Object, Movie Object, Movie Object...}</example>
+        
         // GET: api/MovieData/ListMovies
         [HttpGet]
         public IEnumerable<MovieDto> ListMovies()
@@ -36,6 +44,13 @@ namespace PassionProject.Controllers
             return MovieDtos;
         }
 
+        /// <summary>
+        /// Finds an movie from the MySQL Database through an id. | Non-Deterministic.
+        /// </summary>
+        /// <param name="id">The Movie ID</param>
+        /// <returns>Movie object containing information about the movie with a matching ID. Empty Movie Object if the ID does not match any movies in the system.</returns>
+        /// <example>api/MovieData/FindMovie/5 -> {Movie Object}</example>
+        
         // GET: api/MovieData/FindMovie/5
         [HttpGet]
         [ResponseType(typeof(Movie))]
@@ -59,6 +74,13 @@ namespace PassionProject.Controllers
             return Ok(MovieDto);
         }
 
+        /// <summary>
+        /// Updates an Movie on the MySQL Database. 
+        /// </summary>
+        /// <param name="movie">An object with fields that map to the columns of the Movie's table.</param>
+        /// <example>
+        /// POST api/MovieData/UpdateMovie/5
+        
         // POST: api/MovieData/UpdateMovie/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -95,6 +117,13 @@ namespace PassionProject.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds a Movie to the MySQL Database.
+        /// </summary>
+        /// <param name="movie">An object with fields that map to the columns of the movie's table.</param>
+        /// <example>
+        /// POST api/MovieData/AddMovie
+
         // POST: api/MovieData/AddMovie
         [ResponseType(typeof(Movie))]
         [HttpPost]
@@ -110,6 +139,12 @@ namespace PassionProject.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = movie.MovieID }, movie);
         }
+
+        /// <summary>
+        /// Deletes a movie from the database if the ID of that movie exists.
+        /// </summary>
+        /// <param name="id">The ID of the movie.</param>
+        /// <example> POST : /api/MovieData/DeleteMovie/5</example>
 
         // POST: api/MovieData/DeleteMovie/5
         [ResponseType(typeof(Movie))]

@@ -17,6 +17,14 @@ namespace PassionProject.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns a list of rentals in the rentals database
+        /// </summary>
+        /// <returns>
+        /// A list of Rental Objects mapped to the database column values (RentalID, RFName, RLName, PurchaseDate, ReturnDate).
+        /// </returns>
+        /// <example>GET api/RentalData/ListRentals -> {Rental Object}</example>
+
         // GET: api/RentalData/ListRentals
         [HttpGet]
         public IEnumerable<RentalDto> ListRentals()
@@ -57,6 +65,13 @@ namespace PassionProject.Controllers
             return RentalDtos;
         }
 
+        /// <summary>
+        /// Finds an rental from the MySQL Database through an id. | Non-Deterministic.
+        /// </summary>
+        /// <param name="id">The Rental ID</param>
+        /// <returns>Rental object containing information about the rental with a matching ID. Empty Rental Object if the ID does not match any rentals in the system.</returns>
+        /// <example>api/RentalData/FindRental/5 -> {Rental Object}</example>
+        
         // GET: api/RentalData/FindRental/5
         [ResponseType(typeof(Rental))]
         [HttpGet]
@@ -80,6 +95,13 @@ namespace PassionProject.Controllers
             return Ok(RentalDto);
         }
 
+        /// <summary>
+        /// Updates an Rental on the MySQL Database. 
+        /// </summary>
+        /// <param name="rental">An object with fields that map to the columns of the Rental's table.</param>
+        /// <example>
+        /// POST api/RentalData/UpdateRental/5
+        
         // PUT: api/RentalData/UpdateRental/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -116,6 +138,13 @@ namespace PassionProject.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds a Rental to the MySQL Database.
+        /// </summary>
+        /// <param name="rental">An object with fields that map to the columns of the rental's table.</param>
+        /// <example>
+        /// POST api/RentalData/AddRental
+        
         // POST: api/RentalData/AddRental
         [ResponseType(typeof(Rental))]
         [HttpPost]
@@ -132,6 +161,12 @@ namespace PassionProject.Controllers
             return CreatedAtRoute("DefaultApi", new { id = rental.RentalID }, rental);
         }
 
+        /// <summary>
+        /// Deletes a rental from the database if the ID of that rental exists.
+        /// </summary>
+        /// <param name="id">The ID of the rental.</param>
+        /// <example> POST : /api/RentalData/DeleteRental/5</example>
+        
         // DELETE: api/RentalData/DeleteRental/5
         [ResponseType(typeof(Rental))]
         [HttpPost]
